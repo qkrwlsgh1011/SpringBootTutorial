@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6A24FE;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        div {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #6A24FE;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #6A24FE;
+        }
+    </style>
+</head>
+
+<body>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Name</th>
+    </tr>
+    <tr>
+        <td th:text="${member_test.id}"></td>
+        <td th:text="${member_test.memberEmail}"></td>
+        <td th:text="${member_test.memberPassword}"></td>
+        <td th:text="${member_test.memberName}"></td>
+    </tr>
+</table>
+
+<div>
+    <button onclick="history.back()">뒤로가기</button>
+</div>
+</body>
+
+</html>

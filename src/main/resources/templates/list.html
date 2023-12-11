@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">        <!-- thymeleaf 문법사용, th -> for each문법 -->
+<head>
+    <meta charset="UTF-8">
+    <title>Member List</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #6A24FE;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6A24FE;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 8px 16px;
+            margin-right: 8px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            color: #fff;
+        }
+
+        a.view {
+            background-color: #2196F3;
+        }
+
+        a.delete {
+            background-color: #F44336;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+<h2>회원정보</h2>
+<table>
+    <tr>
+        <th>id</th>
+        <th>memberEmail</th>
+        <th>memberPassword</th>
+        <th>memberName</th>
+        <th>상세조회</th>
+        <th>삭제</th>
+    </tr>
+    <tr th:each="member_test: ${memberList}">       <!-- memberList에 들어간 데이터들을 조회하기 위해 -->
+        <td th:text="${member_test.id}"></td>
+        <td th:text="${member_test.memberEmail}"></td>
+        <td th:text="${member_test.memberPassword}"></td>
+        <td th:text="${member_test.memberName}"></td>
+        <td>
+            <!-- query string /member_test?id=1
+                rest api /member_test/1 -> 1이 회원 고유 ID
+                query string 스타일을 rest api로 많이 쓴다. 주소만으로 어떤 자원인지 식별하자-->
+            <button th:onclick="|location.href='@{|/member_test/${member_test.id}|}'|">조회</button><!-- 회원 고유 번호로 조회 -->
+            <!-- | : 경로상에 어떤 값을 같이 표현하고자 할때 쓰는 문법, thymeleaf문법-->
+        </td>
+        <td>
+            <button th:onclick="|location.href='@{|/member_test/delete/${member_test.id}|}'|">삭제</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
